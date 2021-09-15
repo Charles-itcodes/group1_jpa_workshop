@@ -1,4 +1,4 @@
-package se.lexicon.group1_jpa_workshop.entity;
+package se.lexicon.group1_jpa_workshop.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -40,6 +40,7 @@ public class BookLoan {
         this.borrower = borrower;
         this.book = book;
     }
+
 
     public int getLoanId() {
         return loanId;
@@ -88,6 +89,8 @@ public class BookLoan {
     public void setBook(Book book) {
         this.book = book;
     }
+
+
 
     @Override
     public boolean equals(Object o) {

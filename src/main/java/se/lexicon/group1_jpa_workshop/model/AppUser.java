@@ -1,7 +1,8 @@
-package se.lexicon.group1_jpa_workshop.entity;
+package se.lexicon.group1_jpa_workshop.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -18,6 +19,9 @@ public class AppUser {
     @OneToOne(cascade =CascadeType.ALL, fetch = FetchType.EAGER)
     private Details userDetails;
 
+    @OneToMany(mappedBy = "loans")
+     private  List <BookLoan> loans;
+
     public AppUser() {
     }
 
@@ -29,11 +33,28 @@ public class AppUser {
         this.userDetails = userDetails;
     }
 
-    public AppUser(String username, String password, LocalDate regDate, Details userDetails) {
+    public AppUser(int appUserId, String username, String password, LocalDate regDate, Details userDetails, List<BookLoan> loans) {
+        this.appUserId = appUserId;
         this.username = username;
         this.password = password;
         this.regDate = regDate;
         this.userDetails = userDetails;
+        this.loans = loans;
+    }
+
+
+    public void addBookLoan (BookLoan bookloan) {
+        loans.add(bookloan);
+        bookloan.setBorrower(this);
+
+    }
+
+    public List<BookLoan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(List<BookLoan> loans) {
+        this.loans = loans;
     }
 
     public int getAppUserId() {

@@ -1,6 +1,6 @@
 package se.lexicon.group1_jpa_workshop.data;
 
-import se.lexicon.group1_jpa_workshop.entity.AppUser;
+import se.lexicon.group1_jpa_workshop.model.AppUser;
 
 import java.util.Collection;
 

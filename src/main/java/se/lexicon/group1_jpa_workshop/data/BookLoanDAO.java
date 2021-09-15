@@ -1,6 +1,6 @@
 package se.lexicon.group1_jpa_workshop.data;
 
-import se.lexicon.group1_jpa_workshop.entity.BookLoan;
+import se.lexicon.group1_jpa_workshop.model.BookLoan;
 
 import java.util.Collection;
 

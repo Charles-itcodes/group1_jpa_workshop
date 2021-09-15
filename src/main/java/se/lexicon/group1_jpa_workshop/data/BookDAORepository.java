@@ -2,7 +2,7 @@ package se.lexicon.group1_jpa_workshop.data;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import se.lexicon.group1_jpa_workshop.entity.Book;
+import se.lexicon.group1_jpa_workshop.model.Book;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

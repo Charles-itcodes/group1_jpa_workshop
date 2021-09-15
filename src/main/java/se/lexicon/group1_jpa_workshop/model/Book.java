@@ -1,36 +1,42 @@
-package se.lexicon.group1_jpa_workshop.entity;
+package se.lexicon.group1_jpa_workshop.model;
 
-import org.springframework.data.annotation.Id;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 import java.util.Objects;
+import java.util.Set;
+
+import static javax.persistence.CascadeType.*;
 
 @Entity
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //Strategy for generating Id.
     private int bookId;
     private String isbn;
     private String title;
     private int maxLoanDays;
 
-    public Book() {
-    }
+    @ManyToMany(cascade = {DETACH, MERGE, REFRESH, PERSIST},
+            fetch = FetchType.LAZY,
+            mappedBy = "writtenBooks")
 
-    public Book(int bookId, String isbn, String title, int maxLoanDays) {
-        this.bookId = bookId;
-        this.isbn = isbn;
-        this.title = title;
-        this.maxLoanDays = maxLoanDays;
+    private Set<Author> authors;
+
+    public Book() {
     }
 
     public Book(String isbn, String title, int maxLoanDays) {
         this.isbn = isbn;
         this.title = title;
         this.maxLoanDays = maxLoanDays;
+    }
+
+    public Book(int bookId, String isbn, String title, int maxLoanDays, Set<Author> authors) {
+        this.bookId = bookId;
+        this.isbn = isbn;
+        this.title = title;
+        this.maxLoanDays = maxLoanDays;
+        this.authors = authors;
     }
 
     public int getBookId() {
@@ -65,10 +71,18 @@ public class Book {
         this.maxLoanDays = maxLoanDays;
     }
 
+    public Set<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Book)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
         return getMaxLoanDays() == book.getMaxLoanDays() && Objects.equals(getIsbn(), book.getIsbn()) && Objects.equals(getTitle(), book.getTitle());
     }
@@ -88,4 +102,3 @@ public class Book {
                 '}';
     }
 }
-

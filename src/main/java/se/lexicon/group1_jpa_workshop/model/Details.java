@@ -1,4 +1,4 @@
-package se.lexicon.group1_jpa_workshop.entity;
+package se.lexicon.group1_jpa_workshop.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
