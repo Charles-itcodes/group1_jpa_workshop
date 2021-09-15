@@ -1,9 +1,6 @@
 package se.lexicon.group1_jpa_workshop.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -13,6 +10,7 @@ public class Details {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private int detailsId;
+        @Column(unique = true)
         private String email;
         private String name;
         private LocalDate birthDate;
@@ -22,6 +20,12 @@ public class Details {
 
         public Details(int detailsId, String email, String name, LocalDate birthDate) {
                 this.detailsId = detailsId;
+                this.email = email;
+                this.name = name;
+                this.birthDate = birthDate;
+        }
+
+        public Details(String email, String name, LocalDate birthDate) {
                 this.email = email;
                 this.name = name;
                 this.birthDate = birthDate;

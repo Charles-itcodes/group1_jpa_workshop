@@ -10,6 +10,7 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int appUserId;
+    @Column(unique = true)
     private String username;
     private String password;
     private LocalDate regDate;
@@ -22,6 +23,13 @@ public class AppUser {
 
     public AppUser(int appUserId, String username, String password, LocalDate regDate, Details userDetails) {
         this.appUserId = appUserId;
+        this.username = username;
+        this.password = password;
+        this.regDate = regDate;
+        this.userDetails = userDetails;
+    }
+
+    public AppUser(String username, String password, LocalDate regDate, Details userDetails) {
         this.username = username;
         this.password = password;
         this.regDate = regDate;

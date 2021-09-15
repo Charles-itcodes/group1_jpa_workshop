@@ -13,6 +13,11 @@ import java.util.Collection;
 public class DetailsDAORepository implements DetailsDAO{
     @PersistenceContext
     EntityManager entityManager;
+
+    public DetailsDAORepository(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
     @Transactional
     @Override
     public Details findById(int detailsId) {

@@ -15,6 +15,10 @@ public class AppUserDAORepository implements AppUserDao{
     @PersistenceContext
     EntityManager entityManager;
 
+    public AppUserDAORepository(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
     @Transactional
     @Override
     public AppUser findById(int appUserId) {
